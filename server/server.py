@@ -28,3 +28,4 @@ def get_feedback():
     return str(response)
 
 # open -a Google\ Chrome --args --disable-web-security --user-data-dir="/Users/Esha/Library/ApplicationSupport/Google/Chrome"
+# flask --app server run
