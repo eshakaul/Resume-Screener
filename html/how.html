@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/how.css" />
+    <link rel="html" href="index.html" />
+    <link rel="html" href="testimonials.html" />
+    <link rel="html" href="pricing.html" />
+    <link rel="html" href="try.html" />
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule=""
+      src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"
+    ></script>
+
+    <title>Resume Screener</title>
+  </head>
+  <body>
+    <header class="header">
+      <a href="#">
+        <img
+          class="logo"
+          alt="Resume Screener logo"
+          src="../img/logo.png"
+          href="index.html"
+        />
+      </a>
+
+      <nav class="main-nav">
+        <ul class="main-nav-list">
+          <li>
+            <a class="main-nav-link" href="index.html">Home</a>
+          </li>
+          <li>
+            <a class="main-nav-link" href="how.html">How it works</a>
+          </li>
+          <li>
+            <a class="main-nav-link" href="testimonials.html">Testimonials</a>
+          </li>
+          <li><a class="main-nav-link" href="pricing.html">Pricing</a></li>
+          <li>
+            <a class="main-nav-link nav-cta" href="try.html">Try for free</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="btn-mobile-nav">
+        <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+        <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+      </button>
+    </header>
+
+    <section class="page">
+      <div class="menu">
+        <menu>
+          <button><input id="file" type="file" />Upload</button>
+          <button>Upload job description</button>
+          <button onclick="Scan()">Scan</button>
+        </menu>
+      </div>
+      <section class="sidebar">
+        <div class="job">job 1</div>
+        <div class="job">job 2</div>
+        <div class="job">job 3</div>
+        <div class="job">job 4</div>
+        <div class="job">job 5</div>
+        <div class="job">job 6</div>
+        <div class="job">job 7</div>
+        <div class="job">job 8</div>
+        <div class="job">job 9</div>
+      </section>
+      <main>Resume View</main>
+      <aside>
+        Feedback
+        <p class="feedback" id="feedback"></p>
+      </aside>
+    </section>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      function Scan() {
+        let formData = new FormData();
+        formData.append("file", document.getElementById("file").files[0]);
+        axios
+          .post("http://127.0.0.1:5000/feedback", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((res) => {
+            console.log(res.data);
+            document.getElementById("feedback").innerHTML = res.data;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    </script>
+  </body>
+</html>
