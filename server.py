@@ -5,27 +5,27 @@ from flask import Flask, request
 from werkzeug.utils import secure_filename
 
 numFiles = 0
-openai.api_key = open("api_key.txt").read()
+openai.api_key = "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"
 
 app = Flask(__name__)
 
-@app.post("/rank")
-def rank_resumes():
-    ranks = {}
-    for key, file in request.files.items():
-        global numFiles
-        numFiles += 1
-        ext = os.path.splitext(secure_filename(file.filename))[1]
-        filePath = f"files/{numFiles}{ext}"
-        file.save(filePath)
-        reader = SimpleDirectoryReader(
-            input_files=[filePath]
-        )
-        docs = reader.load_data()
-        index = VectorStoreIndex.from_documents(docs)
-        query_engine = index.as_query_engine()
-        response = query_engine.query("Based on this resume, how would you rank their JavaScript knowledge on a scale of 1-10? Only state the number.")
-        print(response)
-        ranks[key] = 1 # test
-    return ranks
-    
+@app.post("/feedback")
+def get_feedback():
+    global numFiles
+    numFiles += 1
+    file = list(request.files.values())[0]
+    ext = os.path.splitext(secure_filename(file.filename))[1]
+    filePath = f"files/{numFiles}{ext}"
+    file.save(filePath)
+    reader = SimpleDirectoryReader(
+        input_files=[filePath]
+    )
+    docs = reader.load_data()
+    index = VectorStoreIndex.from_documents(docs)
+    query_engine = index.as_query_engine()
+    response = query_engine.query("Please state five pros and three cons of this resume.")
+    print(str(response))
+    return str(response)
+
+# open -a Google\ Chrome --args --disable-web-security --user-data-dir="/Users/Esha/Library/ApplicationSupport/Google/Chrome"
+
