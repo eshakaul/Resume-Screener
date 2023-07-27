@@ -65,26 +65,13 @@
     <section class="page">
       <div class="menu">
         <menu>
-          <button><input id="file" type="file" />Upload</button>
-          <button>Upload job description</button>
+          <input id="file" type="file" />
           <button onclick="Scan()">Scan</button>
         </menu>
       </div>
-      <section class="sidebar">
-        <div class="job">job 1</div>
-        <div class="job">job 2</div>
-        <div class="job">job 3</div>
-        <div class="job">job 4</div>
-        <div class="job">job 5</div>
-        <div class="job">job 6</div>
-        <div class="job">job 7</div>
-        <div class="job">job 8</div>
-        <div class="job">job 9</div>
-      </section>
-      <main>Resume View</main>
       <aside>
-        Feedback
-        <p class="feedback" id="feedback"></p>
+        <h1>Feedback</h1>
+        <p class="feedback-paragraph" id="feedback"></p>
       </aside>
     </section>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -100,7 +87,7 @@
           })
           .then((res) => {
             console.log(res.data);
-            document.getElementById("feedback").innerHTML = res.data;
+            document.getElementById("feedback").innerText = res.data;
           })
           .catch((error) => {
             console.log(error);
