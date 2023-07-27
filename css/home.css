@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-family: "Rubik", sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  width: 1200px;
+}
+
+.hero {
+  height: 100vh;
+  position: relative;
+  background-image: linear-gradient(
+      rgba(50, 50, 50, 0.3),
+      rgba(50, 50, 50, 0.3)
+    ),
+    url(img/dreamjob.png);
+  background-size: cover;
+  color: #fff;
+}
+
+nav {
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 32px;
+}
+
+.hero-container {
+  width: 1200px;
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.hero-container-inner {
+  width: 50%;
+}
+h1 {
+  font-size: 52px;
+  margin-bottom: 32px;
+}
+
+p {
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+.btn:link,
+.btn:visited {
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #007fff;
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  padding: 16px 32px;
+  border-radius: 9px;
+}
+
+h2 {
+  font-size: 44px;
+  margin-bottom: 48px;
+}
+
+section {
+  padding: 96px 0;
+  color: #f7f7f7;
+}
