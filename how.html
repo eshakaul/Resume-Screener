@@ -10,13 +10,11 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="css/home.css" />
-    <link rel="stylesheet" href="how.html" />
-    <link rel="stylesheet" href="testimonials.html" />
-    <link rel="stylesheet" href="pricing.html" />
-    <link rel="stylesheet" href="try.html" />
-    <link rel="javascript" href="java.js" />
-
+    <link rel="stylesheet" href="css/how.css" />
+    <link rel="html" href="index.html" />
+    <link rel="html" href="html/testimonials.html" />
+    <link rel="html" href="html/pricing.html" />
+    <link rel="html" href="html/try.html" />
 
     <script
       type="module"
@@ -31,20 +29,21 @@
   </head>
   <body>
     <header class="header">
-      <a href="index.html">
+      <a href="#">
         <img
           class="logo"
           alt="Resume Screener logo"
           src="img/logo.png"
+          href="index.html"
         />
       </a>
 
       <nav class="main-nav">
         <ul class="main-nav-list">
           <li>
-            <li>
             <a class="main-nav-link" href="index.html">Home</a>
           </li>
+          <li>
             <a class="main-nav-link" href="how.html">How it works</a>
           </li>
           <li>
@@ -62,16 +61,51 @@
         <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
       </button>
     </header>
-    <section class="hero">
-      <div class="hero-container">
-        <div class="hero-container-inner">
-          <h1>See if you qualify for your dream job!</h1>
-          <p>
-            The resume scanner subscription will help you land your dream job! Tailor your resume to become a more quified and competitve candidate for any job!
-          </p>
-          <a href="#" class="btn"> Start Scanning</a>
-        </div>
+
+    <section class="page">
+      <div class="menu">
+        <menu>
+          <button><input id="file" type="file" />Upload</button>
+          <button>Upload job description</button>
+          <button onclick="Scan()">Scan</button>
+        </menu>
       </div>
+      <section class="sidebar">
+        <div class="job">job 1</div>
+        <div class="job">job 2</div>
+        <div class="job">job 3</div>
+        <div class="job">job 4</div>
+        <div class="job">job 5</div>
+        <div class="job">job 6</div>
+        <div class="job">job 7</div>
+        <div class="job">job 8</div>
+        <div class="job">job 9</div>
+      </section>
+      <main>Resume View</main>
+      <aside>
+        Feedback
+        <p class="feedback" id="feedback"></p>
+      </aside>
     </section>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      function Scan() {
+        let formData = new FormData();
+        formData.append("file", document.getElementById("file").files[0]);
+        axios
+          .post("http://127.0.0.1:5000/feedback", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((res) => {
+            console.log(res.data);
+            document.getElementById("feedback").innerHTML = res.data;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    </script>
   </body>
 </html>
